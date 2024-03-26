@@ -8,7 +8,7 @@ radian=0
 
 
 for i in range(10):
-    degree=degree + 1
+    degree=degree +1
     radian=radian+1
     sin=sin+1
     cos=cos+1
