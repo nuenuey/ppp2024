@@ -7,10 +7,9 @@ def text2list(input_text):
         text2list.append(int(token)) # 리스트에 숫자넣기
 
     return text2list
-
 def median(nums):
-
     nums.sort()
+    
     n=len(nums)
     if n%2 ==0: #짝수(나머지=0)
         mid_left = n // 2 #몫을 나누기2 ex) 4>>2
@@ -35,7 +34,7 @@ def main():
     print("중앙값은 {}".format(median(nums)))
     print(f"최솟값은 {min(nums)}")
     print(f"최댓값은 {max(nums)}")
-
+    
 if __name__ == "__main__":
     main()
 
