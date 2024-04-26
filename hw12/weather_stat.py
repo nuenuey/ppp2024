@@ -83,7 +83,18 @@ def read_col_year(weather_filename, col_name, year): #매계변수 3개
             if y == year:
                 dataset.append(float(tokens[col_idx]))
         return dataset
-    
+def maximum_temp_gap(dates, tmax, tmin):
+    max_gap = 0
+    max_gap_date = None
+
+    for date, max_temp, min_temp in zip(dates, tmax, tmin):
+        gap = max_temp - min_temp
+        if gap > max_gap:
+            max_gap = gap
+            max_gap_date = date
+
+    return max_gap_date, max_gap
+
 def get_data_ifs(values, conditions,criteria):
     return [rain for rain, year in zip (values, conditions) if year== criteria]
    

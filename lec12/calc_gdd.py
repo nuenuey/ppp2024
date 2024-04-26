@@ -1,4 +1,9 @@
-from weather_stat import read_col, read_col_int
+import sys
+
+if "./" not in sys.path:
+    sys.path.append("./")
+
+from lec12.weather_stat import read_col, read_col_int
 #from weather_stat import read_col, read_col_int
 
 def gdd_season(tavg_data, months):
@@ -14,13 +19,14 @@ def gdd_season(tavg_data, months):
 
 
 def main():
-    
-    print(f"GDD는 {gdd_season(tavg,months):.1f}도일입니다.")
-    weather_filename = "hw12/weather(146)_2001-2022 (1).csv"
+   
     weather_filename_22 = "hw12/weather(146)_2022-2022.csv"
 
 
     tavg = read_col(weather_filename_22, "tavg")
-    
+    months = read_col_int(weather_filename_22, "month")
+
+    print(f"GDD는 {gdd_season(tavg,months):.1f}도일입니다.")
+
 if __name__ == "__main__":
     main()

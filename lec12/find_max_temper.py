@@ -1,11 +1,17 @@
-from weather_stat import read_col, read_col_int
+import sys
 
-def read_file(filename, col_name):
-    dataset=[]
-    with open(filename) as f:
+if "./" not in sys.path:
+
+    sys.path.append("./")
+
+from lec12.weather_stat import read_col, read_col_int
+
+def read_file(filename, col_name): #col_name이라는 열(column)의 데이터를 반환
+    dataset=[] #데이터 저장할 것
+    with open(filename) as f: #파일을 열어서 라인을 읽을 거야
         lines = f.readlines()
-        header=[x.strip() for x in lines[0].split(",")]
-        col_idx = header.index(col_name)
+        header=[x.strip() for x in lines[0].split(",")] #,을 기준으로 분할해서 헤더의 정보요소로
+        col_idx = header.index(col_name) #인덱스 찾기
         
         for line in lines[1:]:
             
@@ -33,7 +39,7 @@ def read_date(filename):
             year=int(line.split(",")[0])
             month=int(line.split(",")[1])
             day=int(line.split(",")[2])
-            dataset.append([year, month, day])
+            dataset.append([year, month, day]) #리스트이름.append(추가할요소)
         return dataset
 
     
@@ -45,6 +51,7 @@ def main():
     filename="lec12/weather(146)_2022-2022 (1).csv"
     tmax=read_file(filename,"tmax")
     tmin=read_file(filename,"tmin")
+
     years= read_file_int(filename,"year")
     months= read_file_int(filename,"month")
     days= read_file_int(filename,"day")
@@ -56,8 +63,9 @@ def main():
     #temp_diff=[]
     #for tx in zip(tmax,tmin):
     #    temp_diff.append(tx-tn)
-    temp_diff=[tx - tn for tx, tn in zip(tmax,tmin)]
-
+    temp_diff=[tx - tn for tx, tn in zip(tmax,tmin)]#tmax와 tmin에서 요소를 하나씩 가져와 차를 계산
+    #temp_diff=tmax - tmin차이값임
+    
     # #2
     # temp_diff=[]
     # for i in range(len(tmax)):
@@ -80,9 +88,11 @@ def main():
     #     if max_diff_temp<td:
     #         max_diff_temp=td
     #         max_idx = i
-    max_idx = temp_diff.index(max(temp_diff))
 
-    print(f"일교차가 가장 큰 날짜는 0000/00/00, 최대 일교차는 {max(temp_diff):.1f}")
+
+    max_idx = temp_diff.index(max(temp_diff)) #temp_diff
+
+    #print(f"일교차가 가장 큰 날짜는 0000/00/00, 최대 일교차는 {max(temp_diff):.1f}")
     print(f"일교차가 가장 큰 날짜는{years[max_idx]}/{months[max_idx]:.02d}/{days[max_idx]:.02d}, 최대 일교차는 {max(temp_diff):.1f}입니다.")
     
     
@@ -93,10 +103,6 @@ def main():
         if td>max_diff_temp:
             max_diff_temp=td
             max_diff_date= dates
-
-
-    
-
 
 
 
