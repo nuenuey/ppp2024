@@ -1,26 +1,12 @@
-def read_file(filename, col_name): #col_name이라는 열(column)의 데이터를 반환
-    dataset=[] #데이터 저장할 것
-    with open(filename) as f: #파일을 열어서 라인을 읽을 거야
-        lines = f.readlines()
-        header=[x.strip() for x in lines[0].split(",")] #,을 기준으로 분할해서 헤더의 정보요소로
-        col_idx = header.index(col_name) #인덱스 찾기
-        
-        for line in lines[1:]:
-            
-            dataset.append(float(line.split(",")[col_idx]))
-        return dataset
-    
-def read_file_int(filename, col_name):
-    dataset=[]
-    with open(filename) as f:
-        lines = f.readlines()
-        header=[x.strip() for x in lines[0].split(",")]
-        col_idx = header.index(col_name)
-        
-        for line in lines[1:]:
-           dataset.append(int(line.split(",")[col_idx]))
-        return dataset
-    
+import sys
+
+if "./" not in sys.path:
+    sys.path.append("./")
+
+from hw11.weather_stat import read_col, read_col_int
+from lec12.find_max_temper import read_file, read_file_int
+
+
 
 def read_date(filename):
     dataset=[]
@@ -40,21 +26,21 @@ def maximum_temp_gap(dates, tmax, tmin):
     max_gap = 0
     max_gap_date = None
 
-    for date, max_temp, min_temp in zip(dates, tmax, tmin):
+    for date, max_temp, min_temp in zip(dates, tmax, tmin):#날짜, 최고온도, 최저온도=> 일교차 찾기
         gap = max_temp - min_temp
         if gap > max_gap:
             max_gap = gap
             max_gap_date = date
 
-    return max_gap_date, max_gap  #최고 일교차 날짜, 일교차값
+    return max_gap_date, max_gap  #최고 일교차 날짜, 일교차 값
 
 #적산온도 구하기=> 5-9월 생육도일 (적산온도, GDD, drowing degree dat=ys)
 def gdd_season(tavg_data, months):
     gdd_sum = 0
-    for temp, month in zip(tavg_data, months):
-        if month in [5, 6, 7, 8, 9]:
+    for temp, month in zip(tavg_data, months): ##zip(리스트,리스트) 리스트에서 인덱스요소를 가져와 temp와 month라는 변수에 할당
+        if month in [5, 6, 7, 8, 9]: #gdd계산 
             eff_temp = temp - 5
-            if eff_temp < 0:
+            if eff_temp < 0: #음수일때->0
                 eff_temp = 0
             gdd_sum += eff_temp
     return gdd_sum
@@ -63,14 +49,24 @@ def gdd_season(tavg_data, months):
 
 def main():
    
-    weather_filename_22 = "hw12/weather(146)_2001-2022 (1).csv"
-    tmax=read_file(filename,"tmax")
-    tmin=read_file(filename,"tmin")
-    date=read_file(filename,"")
-    tavg = read_col(weather_filename_22, "tavg")
-    months = read_col_int(weather_filename_22, "month")
+    filename = "hw12/weather(146)_2001-2022 (1).csv"
+    
+    tavg = read_col(filename, "tavg")
+    tmin = read_col(filename, "tmin")
+    months = read_col_int(filename, "month")
+    dates = read_date(filename)
 
-    print(f"GDD는 {gdd_season(tavg,months):.1f}도일입니다.")
+#여기 솔직히 이해 X
+    # 최대 일교차 날짜 # 일교차 값
+    max_gap_date, max_gap = maximum_temp_gap(dates, tavg, tmin)
+
+    
+   # 적산온도
+    gdd = gdd_season(tavg, months)
+
+
+    print(f"최대 일교차 날짜는 {max_gap_date[0]:04d}년 {max_gap_date[1]:02d}월 {max_gap_date[2]:02d}일---일교차 값{max_gap:.1f}C")
+    print(f"{max_gap_date[0]:04d}년--- 적산온도{gdd:.1f}C")  
 
 if __name__ == "__main__":
     main()

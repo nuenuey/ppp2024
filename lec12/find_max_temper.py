@@ -4,7 +4,7 @@ if "./" not in sys.path:
 
     sys.path.append("./")
 
-from lec12.weather_stat import read_col, read_col_int
+from hw11.weather_stat import read_col, read_col_int
 
 def read_file(filename, col_name): #col_name이라는 열(column)의 데이터를 반환
     dataset=[] #데이터 저장할 것

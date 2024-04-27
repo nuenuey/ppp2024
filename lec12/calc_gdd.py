@@ -3,7 +3,7 @@ import sys
 if "./" not in sys.path:
     sys.path.append("./")
 
-from lec12.weather_stat import read_col, read_col_int
+from hw11.weather_stat import read_col, read_col_int
 #from weather_stat import read_col, read_col_int
 
 def gdd_season(tavg_data, months):
