@@ -113,7 +113,7 @@ def main():
     #tmax,tmax_date = 38,"2021-08-12"
     #tdiff_max, tdiff_max_date = 28.5, "1989-08-12"
 
-    hw_submission.submit("홍길동", tmax, tmax_date, tdiff_max, tdiff_max_date)
+    hw_submission.submit("신예은", tmax, tmax_date, tdiff_max, tdiff_max_date)
 
 
 
