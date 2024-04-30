@@ -1,0 +1,22 @@
+"""def download(filename)
+
+def download(filename, URL)
+def download(filename, year)
+def download(filename, station, year) 위치 연도 바꿀 수 있음
+연도를 리스트로 9,10,11 이니 그 달만 계산하기
+
+기본값(default value)를 줄 수 있다. 기본값이 있는 경우, 호출할 때 해당 값을 생
+략할 수 있다.
+def sumifs(rainfall, months, selected=[6,7,8])
+sumifs(rainfall, months)라고 호출하면, selected 변수에 [6,7,8]를
+넣어서 실행한다 
+def sumifs(rainfall, months, selected=None):
+if selected is None:
+selected = [6, 7, 8
+
+논형태로 쓰기 P.15
+
+패킹 언패킹 쓰지마"""
+
+
+최고기온 그 날짜 촤댜 알교처

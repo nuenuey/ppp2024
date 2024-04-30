@@ -34,7 +34,7 @@ def read_total_rainfall(filename): #총 강우량
             total_rainfall= float(tokens[9])
             results.append(total_rainfall)
         return results
-
+#총강우량의 리스트 만듦.... 리스트 값을 더해야 총강우량의 합
     
 def main():
 

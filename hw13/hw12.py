@@ -7,7 +7,6 @@ from hw11.weather_stat import read_col, read_col_int
 from lec12.find_max_temper import read_file, read_file_int
 
 
-가
 
 #1 일교차가 가장 큰 날짜와 해당일자의 일교차
 def maximum_temp_gap(dates, tmax, tmin):

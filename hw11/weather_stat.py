@@ -1,9 +1,9 @@
-def read_col(filename, col_name):
+def read_col(filename, col_name): #col_name= 읽어올 열의 이름
     dataset=[]
     with open(filename) as f:
         lines = f.readlines()
-        header=[x.strip() for x in lines[0].split(",")]
-        col_idx= header.index(col_name)
+        header=[x.strip() for x in lines[0].split(",")] #헤더, 열의 이름을 리스트로 저장
+        col_idx= header.index(col_name) #헤더이름과 인덱스의 매치
         #print(header)
         for line in lines[1:]:
             tokens=line.split(",")
