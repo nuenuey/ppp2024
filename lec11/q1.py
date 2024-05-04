@@ -103,7 +103,7 @@ def get_data_ifs(values, conditions,criteria):
 
 
 def main():
-    weather_filename = "lec11/weather(146)_2022-2022 (1).csv"
+    weather_filename = "../lec10/weather(146)_2022-2022.csv" #../ 이전폴더 ./ 현재폴더
     tavg= read_col(weather_filename,"tavg")
     tmax= read_col(weather_filename,"tmax")
     rainfall=read_col(weather_filename,"rainfall")
