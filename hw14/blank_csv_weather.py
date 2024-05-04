@@ -8,11 +8,13 @@ from lec14 import hw_submission
 #from hw11.weather_stat import read_col, read_col_int #헤더와 인덱스 매치
 
 
-def download(filename,URL):
-    with open(filename, "w", encoding="utf-8") as f:
-        res = requests.get(URL) #포스트에 url있고 자료널기
-        res.encoding="cp949"
-        f.write(res.text.replace("\r",""))
+#def download(filename,URL):
+#    with open(filename, 'w', encoding='UTF-8') as f:
+#        res = requests.get(URL) #포스트에 url있고 자료널기
+        #res.encoding='cp949'
+        #f.write(res.text.replace("\r",""))
+#        res.encoding = res.apparent_encoding
+#        f.write(res.content.decode(res.apparent_encoding).replace("\r", ""))
 
 def read_col(filename, col_name): #col_name= 읽어올 열의 이름
     dataset=[]
@@ -58,24 +60,24 @@ def maximum_temp_gap(tmax, tmin,dates):
 
     return tdiff_max_date, tdiff_max  #최고 일교차 날짜, 일교차 값
 
-def read_date(filename):
-    dataset=[]
-    with open(filename, encoding="utf-8") as f:
-        lines = f.readlines()
-        for line in lines[1:]:  
-            
-            year=int(line.split(",")[0])
-            month=int(line.split(",")[1])
-            day=int(line.split(",")[2])
-            dataset.append([year, month, day]) #리스트이름.append(추가할요소)
-        return dataset
-    
+#def read_date(filename):
+#    dataset=[]
+#    with open(filename, encoding='cp949') as f:
+#        lines = f.readlines()
+#        for line in lines[1:]:  
+#            
+#            year=int(line.split(",")[0])
+#            month=int(line.split(",")[1])
+#            day=int(line.split(",")[2])
+#            dataset.append([year, month, day]) #리스트이름.append(추가할요소)
+#        return dataset
+
 
 
 def main():
-    URL="https://data.kma.go.kr/stcs/grnd/downloadGrndTaList.do?fileType=csv&pgmNo=70&menuNo=432&serviceSe=F00101&stdrMg=99999&startDt=19040101&endDt=20240422&taElement=MIN&taElement=AVG&taElement=MAX&stnGroupSns=&selectType=1&mddlClssCd=SFC01&dataFormCd=F00501&dataTypeCd=standard&startDay=19040101&startYear=1904&endDay=20240422&endYear=2024&startMonth=01&endMonth=12&sesnCd=0&txtStnNm=%EC%A0%84%EC%A3%BC&stnId=146&areaId=&gFontSize="
+#    URL="http://data.kma.go.kr/stcs/grnd/downloadGrndTaList.do?fileType=csv&pgmNo=70&menuNo=432&serviceSe=F00101&stdrMg=99999&startDt=19040101&endDt=20240422&taElement=MIN&taElement=AVG&taElement=MAX&stnGroupSns=&selectType=1&mddlClssCd=SFC01&dataFormCd=F00501&dataTypeCd=standard&startDay=19040101&startYear=1904&endDay=20240422&endYear=2024&startMonth=01&endMonth=12&sesnCd=0&txtStnNm=%EC%A0%84%EC%A3%BC&stnId=146&areaId=&gFontSize="
     filename="hw14/jeonju_all.csv"
-    download(filename, URL)
+#    download(filename, URL)
 
     # 전주에서 최고기온, tmax
     # 그 날짜 tmax_date
