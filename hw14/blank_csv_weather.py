@@ -20,17 +20,18 @@ def read_date(filename):
     dataset=[]
     with open(filename, encoding='UTF-8') as f:
         lines = f.readlines()
+        #print(lines)
         for line in lines[8:]:
             token = line.split(',')
             token = token[0].replace("\t", "")
             # token = token[4].replace("\n", "")
-            # print(token)
+            #print(token)
             year=int(token.split("-")[0])
             month=int(token.split("-")[1])
             day=int(token.split("-")[2])
             dataset.append([year, month, day]) #리스트이름.append(추가할 요소)
-            # print(dataset)
-        return dataset
+            #print(dataset) # [1918, 6, 29], [1918, 6, 30]
+        return dataset #리스트로 저장
 
 def read_col(filename, col_name): #col_name= 읽어올 열의 이름
     dataset=[]
@@ -41,7 +42,9 @@ def read_col(filename, col_name): #col_name= 읽어올 열의 이름
         #print(header)
         for line in lines[8:]:
             tokens = line.split(",")
+            #print(tokens) #['\t2024-01-27', '146', '2.2', '-0.7', '6.5\n']
             tokens[4] = tokens[4].replace("\n", "")
+            #print(tokens)# ['\t2024-04-22', '146', '17.7', '15', '21.8']
             if tokens[col_idx] != '':  # 빈칸이 아닌 경우에만 추가
                 dataset.append(float(tokens[col_idx]))
             else:
@@ -56,9 +59,9 @@ def read_col_int(filename, col_name):
         header=[x.strip() for x in lines[7].split(",")]
         col_idx = header.index(col_name)
         #print(header)
-        for line in lines[8:]:
+        for line in lines[8:]: #인덱스 8번부터 세로로 끝까지 줄 읽기
             cutdata = tokens=line.split(",")
-            
+            #print(cutdata) #['\t2024-03-11', '146', '7.4', '1.6', '12.8']
             if cutdata != '':  # 빈칸이 아닌 경우에만 추가
                 dataset.append(int(tokens[col_idx]))
         return dataset  
@@ -77,10 +80,10 @@ def main():
     ## 최대 일교차
     #최고기온 구하는 방법=> 최고기온 최저기온의 차이 계산해서
     #차이가 가장 큰 값이 최고기온 날짜
-    temp_diff = [tx - tn for tx, tn in zip(tmax, tmin)]
+    temp_diff = [tx - tn for tx, tn in zip(tmax, tmin)] #1. 최고기온 최저기온의 차이
     temp_diff_p = [tx - tn for tx, tn in zip(tmax, tmin) if tx != -999 and tn != -999]
-    diff_max_value = max(temp_diff_p)
-    #그 날짜 인덱스 찾기
+    diff_max_value = max(temp_diff_p) # 일교차중 최고차이
+    #그 날짜 인덱스 찾기 (리스트.index(이름))
     diff_max_idx = temp_diff.index(diff_max_value)
     temp_diff_max_date = dates[diff_max_idx]
 
