@@ -1,7 +1,4 @@
 import time
-
-
-
 def main():
     # count = int(input())
     count = 5

@@ -2,7 +2,7 @@ def get_numbers():
     results = []
     while True:
         try:
-            x = input("자연수를 입력하시오=>?")
+            x = input("자연수를 입력하시오=>,-1입력시에는 중지됩니다.")
             num = int(x)
             if num == -1:
                 break
