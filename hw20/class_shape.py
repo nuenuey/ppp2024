@@ -62,6 +62,10 @@ def main():
     shapes.append(Circle(3))
     shapes.append(RegularHexagon(3))
 
+    if shape == "삼각형":
+        a=float(input("a의 길이 :"))
+
+
      #도형의 둘레와 면적
     for shape in shapes:
         print(shape)
