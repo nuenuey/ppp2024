@@ -63,6 +63,12 @@ def create_main_window():
     window = tk.Tk()
     window.title("햄버거 만들기")
     window.resizable(width=False, height=False)
+    img = tk.PhotoImage(file="psy.png")
+    img = img.subsample(3)
+    img_label = tk.Label(window, image=img)
+    img_label.pack(pady=10)
+    img_label.image = img  0
+
 
     label = tk.Label(window, text="햄버거 만들기", font=("Helvetica", 16))
     label.pack(pady=10)
