@@ -67,7 +67,7 @@ def create_main_window():
     img = img.subsample(3)
     img_label = tk.Label(window, image=img)
     img_label.pack(pady=10)
-    img_label.image = img  0
+    img_label.image = img
 
 
     label = tk.Label(window, text="햄버거 만들기", font=("Helvetica", 16))
